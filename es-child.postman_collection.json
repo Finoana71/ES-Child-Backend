@@ -1,0 +1,226 @@
+{
+	"info": {
+		"_postman_id": "184bb004-1574-4543-816a-4c7f9a2bf3d9",
+		"name": "es-child",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "categories",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyN2Q1NjA5Y2M1N2RiZWNlNGY1NTlhZSIsImlhdCI6MTY1MjM4MTI2NH0.N3WkCsbRksKRoQmogHNP8q7QfyZtfIPrURGbl8qC_fA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/categories",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "new",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nom\": \"mot\",\r\n    \"image\": \"mot.png\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/categories",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cours",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyN2Q1NjA5Y2M1N2RiZWNlNGY1NTlhZSIsImlhdCI6MTY1MjM4MTI2NH0.N3WkCsbRksKRoQmogHNP8q7QfyZtfIPrURGbl8qC_fA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/categories/627d16254f7c6c4162f27283/cours",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"categories",
+								"627d16254f7c6c4162f27283",
+								"cours"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Utilisateur",
+			"item": [
+				{
+					"name": "Connexion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numero\": \"0345015284\",\r\n    \"motDePasse\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/users/connexion",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"connexion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inscription",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numero\": \"0345015284\",\r\n    \"pseudo\": \"Rakoto\",\r\n    \"motDePasse\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/users/inscription",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"inscription"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cours",
+			"item": [
+				{
+					"name": "new",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyN2Q1NjA5Y2M1N2RiZWNlNGY1NTlhZSIsImlhdCI6MTY1MjM4MTI2NH0.N3WkCsbRksKRoQmogHNP8q7QfyZtfIPrURGbl8qC_fA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"titre\": \"Cours1\",\r\n    \"image\": \"cours1.png\",\r\n    \"video\": \"cours1.mp4\",\r\n    \"description\": \"cours1 description\",\r\n    \"idCategorie\": \"627d16254f7c6c4162f27283\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/cours",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cours"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				},
+				{
+					"name": "voir",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
