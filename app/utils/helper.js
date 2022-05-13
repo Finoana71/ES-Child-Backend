@@ -69,6 +69,20 @@ function genererConditionSearch(req){
 }
 
 
+// Tester si une chaine est une date
+var isDate = function(date) {
+    return (new Date(date) !== "Invalid Date") && !isNaN(new Date(date));
+}
+
+// is integer
+function isInteger(i){
+    let rep = Number.parseInt(i);
+     if(isNaN(rep))
+        return false;
+    return true;
+}
+
+
 module.exports = {
     makeDataApi,
     gererErreur,
@@ -77,5 +91,7 @@ module.exports = {
     getCollectionPagine,
     uploadFile,
     genererConditionSearch,
-    validerRequete
+    validerRequete,
+    isDate,
+    isInteger
 }
