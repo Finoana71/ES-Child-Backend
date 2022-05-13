@@ -43,6 +43,7 @@ async function getCollectionPagine(cond, req, collection){
     return getPaginateData(data, page, count, size); 
 }
 
+
 async function getCount(cond, collection){
     return await collection.count(cond);
 }

@@ -3,12 +3,24 @@ const dbo = require('./../../config/db');
 const db = dbo.getDb();
 const helper = require("./../utils/helper")
 const Cours = db.collection("cours"); 
+const CoursVue = db.collection("coursVue"); 
 const Categorie = db.collection("categories"); 
     // id, titre, video, image(representative), description(explication) 
 
+async function getCoursVue(idUser, idCours){
+    let c = await CoursVue.findOne({idUser: idUser, idCours: idCours});
+    return c;
+}
+
 // Recuperer un cours
-async function findOne(id){
-    let cours = await Cours.findOne({_id: ObjectID(id)});
+async function findOne(req){
+    let idCours = req.params.id;
+    let cours = await Cours.findOne({_id: ObjectID(idCours)});
+    let coursVue = await getCoursVue(req.id, idCours)
+    if(!coursVue){
+        coursVue = { idCours: idCours, idUser: req.id, idCategorie: cours.idCategorie}    
+        await CoursVue.insert(coursVue);
+    }
     return cours;
 }
 
@@ -31,7 +43,7 @@ function validerRequete(req){
 
 // Verifier Categorie
 async function verifierCategorie(id){
-    let cat = await Categorie.findById(id);
+    let cat = await Categorie.findOne({_id: ObjectID(id)});
     if(!cat)
         throw new Error("La catégorie n'existe pas");
 }
@@ -47,12 +59,24 @@ async function nouveau(req){
     validerRequete(req);
     let course = genererCours(req);
     await verifierCategorie(course.idCategorie);
-    let courses = await getCoursByTitre(cat.titre);
+    let courses = await getCoursByTitre(course.titre);
     if(courses.length != 0)
         throw new Error("Un cours de meme nom a été déjà créé pour cette catégorie")
     await Cours.insert(course);
 }
 
+async function getAllCours(req){
+    let idCategorie = req.params.idCategorie;
+    let cond = {};
+    if(idCategorie)
+        cond.idCategorie = idCategorie;
+    if(req.query.search)
+        cond.titre = new RegExp(req.query.search, 'i')
+    return await Cours.find(cond).toArray();
+}
+
 module.exports = {
     nouveau,
+    findOne,
+    getAllCours
 }
