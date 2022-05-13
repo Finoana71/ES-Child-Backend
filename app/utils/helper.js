@@ -18,6 +18,13 @@ function getPäge(req){
     return page;
 }
 
+function validerRequete(req, att = []){
+    for(let i = 0; i < att.length; i++){
+        if(!req[att[i]])
+            throw new Error("Veuillez renseigner l'attribut \"" + att[i] + "\"")
+    }
+}
+
 function getCountPage(size, count){
     return Math.ceil(count/size);
 }
@@ -61,14 +68,6 @@ function genererConditionSearch(req){
     return cond;
 }
 
-function getConditionDateCommande(req){
-    let cond = {};
-    if(req.query.dateDebut)
-        cond.date = { $gte: ISODate(req.query.dateDebut)}
-    if(req.query.dateFin)
-        cond.date = { $lte: ISODate(req.query.dateFin)}
-    return cond;
-}
 
 module.exports = {
     makeDataApi,
@@ -78,5 +77,5 @@ module.exports = {
     getCollectionPagine,
     uploadFile,
     genererConditionSearch,
-    getConditionDateCommande
+    validerRequete
 }
