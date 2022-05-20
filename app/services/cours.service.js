@@ -6,7 +6,7 @@ const Cours = db.collection("cours");
 const CoursVue = db.collection("coursVue"); 
 const Categorie = db.collection("categories"); 
     // id, titre, video, image(representative), description(explication) 
-
+const notif = require("./notif.service");
 async function getCoursVue(idUser, idCours){
     let c = await CoursVue.findOne({idUser: idUser, idCours: idCours});
     return c;
@@ -37,7 +37,7 @@ function genererCours(req){
 
 // Valider requete ajout
 function validerRequete(req){
-    let att = ["titre", "image", "video", "description", "idCategorie"];
+    let att = ["titre", "idCategorie"];
     helper.validerRequete(req.body, att);
 }
 
@@ -49,8 +49,8 @@ async function verifierCategorie(id){
 }
 
 // Get courses by titre
-async function getCoursByTitre(titre){
-    let c = await Cours.find({titre: titre}).toArray();
+async function getCoursByTitre(titre, idCategorie){
+    let c = await Cours.find({titre: titre, idCategorie: idCategorie}).toArray();
     return c;
 }
 
@@ -59,10 +59,11 @@ async function nouveau(req){
     validerRequete(req);
     let course = genererCours(req);
     await verifierCategorie(course.idCategorie);
-    let courses = await getCoursByTitre(course.titre);
+    let courses = await getCoursByTitre(course.titre, course.idCategorie);
     if(courses.length != 0)
         throw new Error("Un cours de meme nom a été déjà créé pour cette catégorie")
     await Cours.insert(course);
+    notif.envoyerMessage(course);
 }
 
 async function getAllCours(req){
