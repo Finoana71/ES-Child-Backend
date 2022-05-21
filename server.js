@@ -47,12 +47,14 @@ dbo.connectToServer(function (err) {
       var categRouter = require('./app/routes/categorie');
       var userRouter = require('./app/routes/users');
       var coursRouter = require('./app/routes/cours');
+      var quizRouter = require('./app/routes/quiz');
   
       // // Utiliser les routeurs api
       app.use('/api/', indexRouter);
       app.use('/api/categories', categRouter);
       app.use('/api/users', userRouter);
       app.use('/api/cours', coursRouter);
+      app.use('/api/quizs', quizRouter);
   
   
       // catch 404 and forward to error handler

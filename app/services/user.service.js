@@ -25,6 +25,7 @@ function testLogin(motDePasse, user){
 
 // Se connecter
 async function login(req){
+    console.log(req.body)
     validerRequeteLogin(req.body);
     let users = await getUtilisateurByNumero(req.body.numero);
     if(users.length == 0)
