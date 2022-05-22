@@ -1,0 +1,99 @@
+Categories:
+
+    {
+        "nom": "Nombres",
+        "image": "number.jpg"
+    }
+    {
+        "nom": "Couleurs",
+        "image": "color.jpg"
+    },
+    {
+        "nom": "Mots",
+        "image": "mot.png"
+    },
+    {
+        "nom": "Formes",
+        "image": "forme.png"
+    },
+    {
+        "nom": "Solides/Animaux",
+        "image": "animal.jpg"
+    }
+
+Cours:
+
+    {
+		"idCategorie": "628a851b0f4d4984e1c11199",
+        "titre": "Les nombres de 0 à 10",
+        "image": "number1.jpg",
+		"videos": []
+	}
+	
+	{
+			"idCategorie": "628a851b0f4d4984e1c11199",
+        "titre": "Les nombres de 0 à 10(2)",
+        "image": "number3.jpg",
+		"videos": []
+	}
+	
+	{
+			"idCategorie": "628a851b0f4d4984e1c11199",
+
+        "titre": "Les chiffres du Nouvel An",
+        "image": "number2.jpg",
+		"videos": []
+	}
+	
+    {
+		"idCategorie": "628776f74d5531361740bc64",
+        "titre": "Les couleurs 1",
+        "image": "color1.jpg",
+		"videos": [],
+		"description": "couleur.html"
+	}
+	
+	
+    {
+    		"idCategorie": "628776f74d5531361740bc64",
+
+        "titre": "Apprendre les couleurs(2)",
+        "image": "color2.jpg",
+		"videos": [],
+		"description": "couleur.html"
+	}
+	
+	
+    {
+    
+    	"idCategorie": "628a85460f4d4984e1c1119b",
+        "titre": "Apprendre les formes et les couleurs",
+        "image": "color3.jpg",
+		"videos": []
+	}
+
+    {
+		"idCategorie": "628a85460f4d4984e1c1119b",
+        "titre": "Apprendre les formes",
+        "image": "forme.png",
+		"videos": [],
+		"description": "forme.html"
+	}
+
+    {
+		"idCategorie": "628a85550f4d4984e1c1119c",
+        "titre": "Apprendre les animaux",
+        "image": "animal.png",
+		"videos": [],
+		"description": "animaux.html"
+	}
+	
+	
+    {
+		"idCategorie": "628a85310f4d4984e1c1119a",
+        "titre": "Apprendre l'alphabet",
+        "image": "mot.jpg",
+		"videos": [],
+		"description": "alphabet.html"
+	}
+		
