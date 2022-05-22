@@ -1,4 +1,4 @@
-const { ObjectID } = require('mongodb');
+const { ObjectId } = require('bson');
 const dbo = require('./../../config/db');
 const db = dbo.getDb();
 const helper = require("./../utils/helper")
@@ -15,11 +15,14 @@ async function getCoursVue(idUser, idCours){
 // Recuperer un cours
 async function findOne(req){
     let idCours = req.params.id;
-    let cours = await Cours.findOne({_id: ObjectID(idCours)});
-    let coursVue = await getCoursVue(req.id, idCours)
+    // console.log(idCours)
+    let cours = await Cours.findOne({_id: ObjectId(idCours)});
+    if(!cours)
+        throw new Error("Le cours est introuvable")
+    let coursVue = await getCoursVue(req.userId, idCours)
     cours.vue = true;
     if(!coursVue){
-        coursVue = { idCours: idCours, idUser: req.id, idCategorie: cours.idCategorie}    
+        coursVue = { idCours: idCours, idUser: req.userId, idCategorie: cours.idCategorie}    
         await CoursVue.insert(coursVue);
         cours.vue = false;
     }
