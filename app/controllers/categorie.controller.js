@@ -4,7 +4,7 @@ const helper = require("./../utils/helper");
 
 const getAll = async (req, res) =>{
     try{
-        let cats = await catServ.getAllNbVue();
+        let cats = await catServ.getAllNbVue(req.userId);
         res.send(helper.makeDataApi(cats, 200, ""));
     }
     catch(err){

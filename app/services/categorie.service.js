@@ -25,8 +25,9 @@ async function getAllNbVue(idUser){
     let nbCours = await getNbCoursCategorie();
     let nbVue = await getNbCoursVue(idUser);
     // console.log(nbVue)
+    // console.log(idUser)
     for(let i = 0; i < cats.length; i++){
-      console.log("*".repeat(100))
+    //   console.log("*".repeat(100))
 
         setNbCours("coursTotal", cats[i], nbCours)
         setNbCours("coursVue", cats[i], nbVue)
@@ -48,7 +49,11 @@ async function getNbCoursCategorie(){
 }
 
 async function getNbCoursVue(idUser){
+    // console.log(idUser)
     let rep = await CoursVue.aggregate([
+        {
+            $match: {"idUser": idUser } 
+        },
         {
             $group:
             {
@@ -56,9 +61,6 @@ async function getNbCoursVue(idUser){
                 nbCours: {$sum: 1 }
             }
         },
-        {
-            $match: {"idUser": idUser} 
-        }
     ]).toArray();
     return rep;
 }
