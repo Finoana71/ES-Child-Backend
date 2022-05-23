@@ -23,9 +23,9 @@ const verifyToken = (req, res, next) => {
                 message: "Non autorisé!",
             });
         }
-        req.userId = decoded.userId;
+        req.userId = decoded.id;
         req.currentUser = await User.findOne({_id: ObjectId(decoded.id)});
-        if (!req.currentUser||err) {
+        if (!req.currentUser|| req.currentUser.length == 0 || err) {
             return res.status(401).send({
                 message: "Non autorisé!",
             });

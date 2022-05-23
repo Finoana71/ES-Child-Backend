@@ -7,7 +7,7 @@ const CoursVue = db.collection("coursVue");
 const Categorie = db.collection("categories"); 
     // id, titre, video, image(representative), description(explication) 
 const notif = require("./notif.service");
-async function getCoursVue(idUser, idCours){
+async function getOneCoursVue(idUser, idCours){
     let c = await CoursVue.findOne({idUser: idUser, idCours: idCours});
     return c;
 }
@@ -19,11 +19,12 @@ async function findOne(req){
     let cours = await Cours.findOne({_id: ObjectId(idCours)});
     if(!cours)
         throw new Error("Le cours est introuvable")
-    let coursVue = await getCoursVue(req.userId, idCours)
+    let coursVue = await getOneCoursVue(req.userId, idCours);
+    // console.log(coursVue);
     cours.vue = true;
-    if(!coursVue){
-        coursVue = { idCours: idCours, idUser: req.userId, idCategorie: cours.idCategorie}    
-        await CoursVue.insert(coursVue);
+    if(!coursVue || coursVue.length == 0){
+        let cv = { idCours: idCours, idUser: req.userId, idCategorie: cours.idCategorie}    
+        await CoursVue.insertOne(cv);
         cours.vue = false;
     }
     return cours;
