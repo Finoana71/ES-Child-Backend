@@ -84,6 +84,12 @@ function isInteger(i){
 }
 
 
+function formaterId(id){
+    let s  = id.split("­");
+    console.log(s)
+    return s.join("");
+}
+
 module.exports = {
     makeDataApi,
     gererErreur,
@@ -94,5 +100,6 @@ module.exports = {
     genererConditionSearch,
     validerRequete,
     isDate,
-    isInteger
+    isInteger,
+    formaterId
 }

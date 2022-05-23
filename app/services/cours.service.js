@@ -16,6 +16,7 @@ async function getOneCoursVue(idUser, idCours){
 async function findOne(req){
     let idCours = req.params.id;
     // console.log(idCours)
+    idCours = helper.formaterId(idCours)
     let cours = await Cours.findOne({_id: ObjectId(idCours)});
     if(!cours)
         throw new Error("Le cours est introuvable")
@@ -76,13 +77,16 @@ async function getAllCours(req){
     let idCategorie = req.params.idCategorie;
     let cond = {};
     if(idCategorie)
-        cond.idCategorie = idCategorie;
+        cond.idCategorie = helper.formaterId(idCategorie);
     if(req.query.search)
         cond.titre = new RegExp(req.query.search, 'i')
+        // console.log(cond);
     let cours = await Cours.find(cond).toArray();
     await setCoursVue(req.userId, idCategorie, cours);
     return cours;
 }
+
+// https://­es-child-backend.onre­nder.com/api/categories/628776f74d5531361740­bc64/cours
 
 async function getCoursVue(idUser, idCategorie){
     let cond = {idUser: idUser};

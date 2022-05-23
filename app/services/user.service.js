@@ -25,7 +25,7 @@ function testLogin(motDePasse, user){
 
 // Se connecter
 async function login(req){
-    console.log(req.body)
+    // console.log(req.body)
     validerRequeteLogin(req.body);
     let users = await getUtilisateurByNumero(req.body.numero);
     if(users.length == 0)
@@ -60,7 +60,7 @@ function genererUtilisateur(req){
 
 async function verifierNumeroUtilise(numero){
     let users = await getUtilisateurByNumero(numero);
-    console.log(users);
+    // console.log(users);
     if(users.length != 0) throw new Error("Cet numero est deja utilisé par un autre utilisateur")
 }
 
