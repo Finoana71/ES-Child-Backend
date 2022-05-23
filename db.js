@@ -86,5 +86,5 @@
             <li>Rectangle</li>
         </ul>
         "
-    }                           
-];
+      }                           
+];  

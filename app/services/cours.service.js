@@ -51,7 +51,7 @@ function validerRequete(req){
 
 // Verifier Categorie
 async function verifierCategorie(id){
-    let cat = await Categorie.findOne({_id: ObjectID(id)});
+    let cat = await Categorie.findOne({_id: ObjectId(id)});
     if(!cat)
         throw new Error("La catégorie n'existe pas");
 }
